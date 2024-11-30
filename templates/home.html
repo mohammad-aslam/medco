@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Cost Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/calculation-cost-medical-expenses-calculator-pills-bottle-purple-yellow-background-sos-top-view-minimalism_175682-13822.jpg?size=626&ext=jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href={{url_for('home')}}>Home</a>
+        <a href={{url_for('profile')}}>Profile</a>
+         <a href={{url_for('dashboard')}}>dashboard</a>
+        <a href={{url_for('contact')}}>Contact</a>
+        <a href={{url_for('help')}}>Help</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Medical Cost Tracker</h1>
+        <p>Manage your medical expenses with ease. Track costs, set budgets, and gain insights to make informed financial decisions for your health.</p>
+        <a href={{url_for('profile')}}>Get Started</a>
+    </div>
+</body>
+</html>

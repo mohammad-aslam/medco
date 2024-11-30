@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Cost Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+      a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href={{url_for('home')}}>Home</a>
+        <a href={{url_for('profile')}}>Profile</a>
+         <a href={{url_for('dashboard')}}>dashboard</a>
+        <a href={{url_for('contact')}}>Contact</a>
+        <a href={{url_for('help')}}>Help</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+    <h2>Medical Cost Profile</h2>
+    <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" min="0" required>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi" placeholder="Enter your BMI" step="0.1" min="0" required>
+
+        <label for="children">Number of Children:</label>
+        <input type="number" id="children" name="children" placeholder="Enter number of children" min="0" required>
+
+        <label for="smoker">Smoker:</label>
+        <select id="smoker" name="smoker" required>
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="region">Region:</label>
+        <select id="region" name="region" required>
+            <option value="">Select</option>
+            <option value="northeast">Northeast</option>
+            <option value="northwest">Northwest</option>
+            <option value="southeast">Southeast</option>
+            <option value="southwest">Southwest</option>
+        </select>
+
+        <label for="charges">Medical Charges:</label>
+        <input type="number" id="charges" name="charges" placeholder="Enter medical charges" step="0.01" min="0" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

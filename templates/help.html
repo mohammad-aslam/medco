@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Medical Cost Help Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        .faq {
+            margin: 20px 0;
+        }
+        .faq button {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            text-align: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .faq button:hover {
+            background-color: #0056b3;
+        }
+        .faq-content {
+            display: none;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function toggleFaq(index) {
+            const contents = document.querySelectorAll('.faq-content');
+            contents.forEach((content, idx) => {
+                if (idx === index) {
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+
+<nav>
+        <a href={{url_for('home')}}>Home</a>
+        <a href={{url_for('profile')}}>Profile</a>
+         <a href={{url_for('dashboard')}}>dashboard</a>
+        <a href={{url_for('contact')}}>Contact</a>
+        <a href={{url_for('help')}}>Help</a>
+    </nav>
+
+<div class="container">
+    <h2>Medical Cost Help Page</h2>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+        <button onclick="toggleFaq(0)">What factors influence medical costs?</button>
+        <div class="faq-content">
+            <p>Medical costs are influenced by factors such as age, BMI, smoking status, region, and pre-existing conditions.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button onclick="toggleFaq(1)">How is BMI calculated?</button>
+        <div class="faq-content">
+            <p>BMI is calculated by dividing a person's weight in kilograms by the square of their height in meters.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button onclick="toggleFaq(2)">What regions are used in medical cost analysis?</button>
+        <div class="faq-content">
+            <p>Regions typically include Northeast, Northwest, Southeast, and Southwest.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button onclick="toggleFaq(3)">How do smoking habits affect medical costs?</button>
+        <div class="faq-content">
+            <p>Smoking habits can significantly increase medical costs due to higher risks of chronic diseases.</p>
+        </div>
+    </div>
+
+    <!-- Additional Help Form -->
+    <h3>Need More Help?</h3>
+    <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <label for="message">Your Query:</label>
+        <textarea id="message" name="message" placeholder="Enter your question or query" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>
