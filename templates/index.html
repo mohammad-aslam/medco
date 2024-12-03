@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for patient in content %}
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ patient.age }}</h5>
+            <p class="card-text">{{ patient.bmi }}</p>
+            <p class="card-text">{{ patient.children }}</p>
+            <p  class="card-text">{{ patient.charges }}</p>
+            <p class="card-text">{{ patient.region }}</p>
+          </div>
+          <br>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+

@@ -1,3 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +42,7 @@
             border: none;
             outline: none;
             cursor: pointer;
-            background-color: #007BFF;
+            background-color: #71AFFF;
             color: white;
             border-radius: 5px;
             margin-bottom: 10px;
@@ -52,19 +59,7 @@
             background-color: #f8f8f8;
             margin-bottom: 10px;
         }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        a:hover {
-            background-color: #218838;
-        }
+
     </style>
     <script>
         function toggleContact(index) {
@@ -80,15 +75,6 @@
     </script>
 </head>
 <body>
-
-<nav>
-        <a href={{url_for('home')}}>Home</a>
-        <a href={{url_for('profile')}}>Profile</a>
-         <a href={{url_for('dashboard')}}>dashboard</a>
-        <a href={{url_for('contact')}}>Contact</a>
-        <a href={{url_for('help')}}>Help</a>
-    </nav>
-
 <div class="container">
     <h2>Contact Us</h2>
 
@@ -121,3 +107,5 @@
 
 </body>
 </html>
+
+{%endblock%}
