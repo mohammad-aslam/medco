@@ -1,4 +1,4 @@
-from flask import Flask, render_template,  request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 
 from utils.db import db
 from models.medic import *
@@ -58,6 +58,23 @@ def submit():
     db.session.commit()
     print("sumitted successfully")
     return redirect('/')
+
+
+
+@app.route('/delete/<int:id>', methods=['GET', 'DELETE'])
+def delete_user(id):
+    task = Patients.query.get(id)
+    print("task: {}".format(task))
+
+    if not task:
+        return jsonify({'message': 'task not found'}), 404
+    try:
+        db.session.delete(task)
+        db.session.commit()
+        return jsonify({'message': 'task deleted successfully'}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': 'An error occurred while deleting the data {}'.format(e)}), 500
 
 if __name__ =='__main__':
     app.run(host='127.0.0.1',port=5003,debug=True)

@@ -4,22 +4,60 @@
 
 {% block content %}
 
+<style>
+    body{
+      background-image: url('https://www.fatima.edu.ph/wp-content/uploads/2023/11/top-view-medical-stethoscope-icon-family-cyan-background-health-care-insurance-concept-3d-rendering-scaled.jpg'); /* Replace with your image URL */
+      background-position: center;
+      }
+
+
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+</style>
+
 <div class="container">
     <div class="row">
         {% for patient in content %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 25rem;color:grey;">
           <div class="card-body">
             <h5 class="card-title">{{ patient.age }}</h5>
             <p class="card-text">{{ patient.bmi }}</p>
             <p class="card-text">{{ patient.children }}</p>
             <p  class="card-text">{{ patient.charges }}</p>
             <p class="card-text">{{ patient.region }}</p>
+            <p class="card-text"><button onclick="confirmDelete({{patient.id}})">delete</button></p>
           </div>
           <br>
         </div>
         {% endfor %}
     </div>
+
+    <script>
+        function confirmDelete(taskusn) {
+            // Show a confirmation alert
+            const confirmation = confirm("Are you sure you want to delete this student?");
+            if (confirmation) {
+                // If user confirms, proceed with the delete request
+                fetch(`/delete/${taskusn}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message); // Show response message
+                    if (data.message === 'task deleted successfully') {
+                        window.location.reload(); // Optionally, refresh the page
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
 </div>
+
 
 {% endblock %}
 
