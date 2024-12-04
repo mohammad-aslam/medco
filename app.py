@@ -52,10 +52,6 @@ def submit():
         patient = Patients(age=age, bmi=bmi, children=children, charges=charges, region=region)
         db.session.add(patient)
         db.session.commit()
-
-    patient=Patients(age=age,bmi=bmi,children=children,charges=charges,region=region)
-    db.session.add(patient)
-    db.session.commit()
     print("sumitted successfully")
     return redirect('/')
 
@@ -75,6 +71,53 @@ def delete_user(id):
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': 'An error occurred while deleting the data {}'.format(e)}), 500
+
+
+@app.route('/update/<int:patient_id>', methods=['PUT'])
+def update_patient(patient_id):
+        data = request.json
+        patient = Patients.query.get(patient_id)  # Assuming you're using SQLAlchemy
+
+        if patient:
+            patient.age = data['age']
+            patient.bmi = data['bmi']
+            patient.children = data['children']
+            patient.charges = data['charges']
+            patient.region = data['region']
+
+            db.session.commit()
+            return jsonify({"message": "Patient updated successfully"})
+        else:
+            return jsonify({"message": "Patient not found"}), 404
+
+
+@app.route('/add', methods=['POST'])
+def add_patient():
+    try:
+        # Get the data from the request
+        data = request.get_json()
+
+        # Create a new patient instance
+        patient = Patients(
+            age=data.get('age'),
+            bmi=data.get('bmi'),
+            children=data.get('children'),
+            charges=data.get('charges'),
+            region=data.get('region')
+        )
+
+        # Add to the database
+        db.session.add(patient)
+        db.session.commit()
+
+        # Respond with a success message
+        return jsonify({'message': 'Patient added successfully'}), 201
+
+    except Exception as e:
+        # Handle errors
+        db.session.rollback()  # Rollback in case of error
+        return jsonify({'message': str(e)}), 400
+
 
 if __name__ =='__main__':
     app.run(host='127.0.0.1',port=5003,debug=True)
