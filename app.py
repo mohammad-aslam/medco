@@ -58,16 +58,16 @@ def submit():
 
 
 @app.route('/delete/<int:id>', methods=['GET', 'DELETE'])
-def delete_user(id):
-    task = Patients.query.get(id)
-    print("task: {}".format(task))
+def delete(id):
+    patient = Patients.query.get(id)
+    print("task: {}".format(patient))
 
-    if not task:
-        return jsonify({'message': 'task not found'}), 404
+    if not patient:
+        return jsonify({'message': 'patient not found'}), 404
     try:
-        db.session.delete(task)
+        db.session.delete(patient)
         db.session.commit()
-        return jsonify({'message': 'task deleted successfully'}), 200
+        return jsonify({'message': 'patient deleted successfully'}), 200
     except Exception as e:
         db.session.rollback()
         return redirect('/')
