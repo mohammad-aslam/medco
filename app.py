@@ -74,25 +74,6 @@ def delete_user(id):
         return jsonify({'message': 'An error occurred while deleting the data {}'.format(e)}), 500
 
 
-
-@app.route('/update/<int:patient_id>', methods=['PUT'])
-def update_patient(patient_id):
-        data = request.json
-        patient = Patients.query.get(patient_id)  # Assuming you're using SQLAlchemy
-
-        if patient:
-            patient.age = data['age']
-            patient.bmi = data['bmi']
-            patient.children = data['children']
-            patient.charges = data['charges']
-            patient.region = data['region']
-
-            db.session.commit()
-            return jsonify({"message": "Patient updated successfully"})
-        else:
-            return jsonify({"message": "Patient not found"}), 404
-
-
 @app.route('/add', methods=['POST'])
 def add_patient():
     try:
@@ -129,7 +110,7 @@ def update(id):
         return jsonify({'message': 'patient not found'}), 404
 
     if request.method == 'POST':
-        patient.age = request.form['id']
+        patient.age = request.form['age']
         patient.bmi = request.form['bmi']
         patient.children = request.form['children']
         patient.charges = request.form['charges']
