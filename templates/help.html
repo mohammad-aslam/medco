@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Analytics{% endblock %}
+{% block title %}help{% endblock %}
 
 {% block content %}
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Medical Cost Help Page</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,7 +36,7 @@
             border: none;
             outline: none;
             cursor: pointer;
-            background-color: #007BFF;
+            background-color: #71AFFF;
             color: white;
             border-radius: 5px;
             margin-bottom: 10px;
@@ -123,6 +120,12 @@
         <button onclick="toggleFaq(3)">How do smoking habits affect medical costs?</button>
         <div class="faq-content">
             <p>Smoking habits can significantly increase medical costs due to higher risks of chronic diseases.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button onclick="toggleFaq(4)">Any Medical Support</button>
+        <div class="faq-content">
+            <p>For quick Medical support and in case of emergency contact <strong>medicalsupport@medicalcost.com</strong> or contact <strong>+91 6281987837</strong></p>
         </div>
     </div>
 
