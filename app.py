@@ -35,6 +35,27 @@ with app.app_context():
     db.create_all()
 
 
+@app.route("/submit", methods=['POST'])
+def submit():
+    form_data = request.form.to_dict()
+    print(f"form_data: {form_data}")
+
+    age = form_data.get('age')
+    bmi = form_data.get('bmi')
+    children = form_data.get('children')
+    charges = form_data.get('charges')
+    region = form_data.get('region')
+
+
+    patient = Patients.query.filter_by(age=age).first()
+    if not patient:
+        patient = Patients(age=age, bmi=bmi, children=children, charges=charges, region=region)
+        db.session.add(patient)
+        db.session.commit()
+    print("sumitted successfully")
+    return redirect('/')
+
+
 
 @app.route('/delete/<int:id>', methods=['GET', 'DELETE'])
 def delete_user(id):
@@ -49,8 +70,27 @@ def delete_user(id):
         return jsonify({'message': 'task deleted successfully'}), 200
     except Exception as e:
         db.session.rollback()
+        return redirect('/')
         return jsonify({'message': 'An error occurred while deleting the data {}'.format(e)}), 500
 
+
+
+@app.route('/update/<int:patient_id>', methods=['PUT'])
+def update_patient(patient_id):
+        data = request.json
+        patient = Patients.query.get(patient_id)  # Assuming you're using SQLAlchemy
+
+        if patient:
+            patient.age = data['age']
+            patient.bmi = data['bmi']
+            patient.children = data['children']
+            patient.charges = data['charges']
+            patient.region = data['region']
+
+            db.session.commit()
+            return jsonify({"message": "Patient updated successfully"})
+        else:
+            return jsonify({"message": "Patient not found"}), 404
 
 
 @app.route('/add', methods=['POST'])
@@ -89,7 +129,7 @@ def update(id):
         return jsonify({'message': 'patient not found'}), 404
 
     if request.method == 'POST':
-        patient.age = request.form['age']
+        patient.age = request.form['id']
         patient.bmi = request.form['bmi']
         patient.children = request.form['children']
         patient.charges = request.form['charges']
